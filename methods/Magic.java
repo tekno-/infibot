@@ -3,14 +3,30 @@ package com.infibot.client.api.methods;
 import com.infibot.client.api.wrappers.Interactable;
 
 public class Magic {
+    /**
+     * Casts a Spell on an Interactable.
+     * @param spell the spell to cast
+     * @param interactable the entity to cast the spell on
+     * @return true if succeeded; otherwise false
+     */
     public static boolean castSpell(Spell spell, Interactable interactable) {
         return interactable.isOnScreen() && castSpell(spell) && interactable.interact("Cast");
     }
 
+    /**
+     *
+     * @param spell the spell to cast
+     * @return true if succeeded; otherwise false
+     */
     public static boolean castSpell(Spell spell) {
         return Skill.MAGIC.getRealLevel() >= spell.getRequiredLevel() && Tab.MAGIC.open() && Widgets.get(192, spell.getIndex()).interact("Cast");
     }
 
+    /**
+     * Hover a spell.
+     * @param spell the spell to hover
+     * @return true if succeeding
+     */
     public static boolean hoverSpell(Spell spell) {
         return Tab.MAGIC.open() && Widgets.get(192, spell.getIndex()).hover();
     }

@@ -8,7 +8,10 @@ import java.util.List;
 
 public class PrayerBook {
 
-
+    /**
+     *
+     * @return list of active prayers
+     */
     public static List<Prayer> getSelectedPrayers() {
         List<Prayer> list = new LinkedList<>();
         for (Prayer prayer : Normal.values()) {
@@ -19,30 +22,69 @@ public class PrayerBook {
         return list;
     }
 
+    /**
+     * Attempts to active a certain prayer.
+     * @param prayer the prayer to activate
+     * @return true if succeeded; otherwise false
+     */
     public static boolean activate(Prayer prayer) {
         return activate(prayer, true);
     }
 
+    /**
+     * Opens the Prayer tab.
+     * @return true if succeeded; otherwise false
+     */
     public static boolean open() {
         return Tab.PRAYER.open();
     }
 
+    /**
+     * Sets a prayer to the state specified by the boolean active.
+     * @param prayer the prayer to toggle
+     * @param active the state of the prayer
+     * @return true if succeeded; otherwise false
+     */
     public static boolean activate(Prayer prayer, boolean active) {
         return active == prayer.isActive() || (open() && prayer.getChild().click());
     }
 
+    /**
+     * Flashes a prayer.
+     * @param prayer the prayer to flash
+     * @return true if succeeded; otherwise false
+     */
     public static boolean flash(Prayer prayer) {
         return flash(prayer, false);
     }
 
+    /**
+     * Flashes a prayer with specified delay.
+     * @param prayer the prayer to flash
+     * @param delay the delay
+     * @return true if succeeded; otherwise false
+     */
     public static boolean flash(Prayer prayer, int delay) {
         return flash(prayer, false, delay);
     }
 
+    /**
+     * Flases a prayer with specified endstate.
+     * @param prayer the prayer to flash
+     * @param endstate the end state of flashing
+     * @return true if succeeded; otherwise false
+     */
     public static boolean flash(Prayer prayer, boolean endstate) {
         return flash(prayer, endstate, 100);
     }
 
+    /**
+     * Flashes a prayer with specified endstate and delay.
+     * @param prayer the prayer to flash
+     * @param endstate the end state of flashing
+     * @param delay the delay
+     * @return true if succeeded; otherwise false
+     */
     public static boolean flash(Prayer prayer, boolean endstate, int delay) {
         if (open() && prayer.getChild().click())
             Time.sleep(delay);

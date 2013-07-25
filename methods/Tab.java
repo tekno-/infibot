@@ -25,15 +25,27 @@ public enum Tab {
         this.compId = compId;
     }
 
+    /**
+     * Checks if a tab is open.
+     * @return true if tab is open; otherwise false
+     */
     public boolean isOpen() {
         WidgetChild wc = getComponent();
         return wc != null && wc.getTextureId() > 1000;
     }
 
+    /**
+     * Gets tab component.
+     * @return the tab component
+     */
     public WidgetChild getComponent() {
         return Widgets.get(548, compId);
     }
 
+    /**
+     * Gets current tab.
+     * @return current tab; otherwise Inventory
+     */
     public static Tab getCurrent() {
         for(Tab tab : Tab.values()) {
             if(tab.isOpen()) {
@@ -43,6 +55,10 @@ public enum Tab {
         return Tab.INVENTORY;
     }
 
+    /**
+     * Opens this tab.
+     * @return true if succeeded; otherwise false
+     */
     public boolean open() {
         if(isOpen()) {
             return true;

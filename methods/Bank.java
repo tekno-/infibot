@@ -26,14 +26,23 @@ public class Bank {
     private static final Rectangle SCROLL_AREA = new Rectangle(468, 96, 15, 175);
     private static final Rectangle SCROLL_DOWN = new Rectangle(468, 272, 15, 15);
 
+    /**
+     * @return the bank widget
+     */
     public static WidgetChild getVisibleBank() {
         return Widgets.get(PARENT, VISUAL_ITEMS_WIDGET);
     }
 
+    /**
+     * @return get y-scroll difference
+     */
     public static int getScrollingTranslation() {
         return (int) Math.round(getPercentageScrolled() * 17.5);
     }
 
+    /**
+     * @return the percentage of how far the bank is scrolled
+     */
     public static double getPercentageScrolled() {
         if (!isOpen())
             return -1;
@@ -57,6 +66,12 @@ public class Bank {
         return -1;
     }
 
+    /**
+     * Deposits items from inventory into bank.
+     * @param count amount of items to be deposited (includes stacks)
+     * @param ids the ids to deposit
+     * @return true if succeeded; otherwise false
+     */
     public static boolean deposit(int count, int... ids) {
         Item item = Inventory.getItem(ids);
         String action = ActionState.DEPOSIT.getString(count);
@@ -73,6 +88,9 @@ public class Bank {
         return false;
     }
 
+    /**
+     * @return gets all bank items available in the bank
+     */
     public static BankItem[] getItems() {
         List<BankItem> items = new ArrayList<>();
         WidgetChild wc = Widgets.get(PARENT, ITEMS);
@@ -85,6 +103,11 @@ public class Bank {
         return items.toArray(new BankItem[items.size()]);
     }
 
+    /**
+     *
+     * @param ids the possible ids of the returned bank item
+     * @return a BankItem instance; or null if none found for specified ids
+     */
     public static BankItem getItem(int... ids) {
         for (BankItem item : getItems()) {
             for (int i : ids) {
@@ -96,6 +119,9 @@ public class Bank {
         return null;
     }
 
+    /**
+     * @return true if bank is open; otherwise false
+     */
     public static boolean isOpen() {
         WidgetChild wc = Widgets.get(PARENT, ITEMS);
         if (wc != null) {
@@ -109,6 +135,11 @@ public class Bank {
         return false;
     }
 
+    /**
+     *
+     * @param up boolean indicating whether to scroll up or down
+     * @return true if scrolling up succeeded; otherwise false
+     */
     public static boolean scroll(boolean up) {
         if (!isOpen())
             return false;
@@ -119,11 +150,19 @@ public class Bank {
         return r.contains(Mouse.getPosition());
     }
 
+    /**
+     *
+     * @return true if closing the bank succeeded; otherwise false
+     */
     public static boolean close() {
         WidgetChild closeButton = Widgets.get(PARENT, CLOSE);
         return closeButton != null && closeButton.interact("Close");
     }
 
+    /**
+     *
+     * @return true if opening bank succeeded; otherwise false
+     */
     public static boolean open() {
         for (BankType bt : BankType.values()) {
             Interactable interactable = bt.getNearest();
@@ -145,6 +184,9 @@ public class Bank {
         return false;
     }
 
+    /**
+     * Enum used for banker types.
+     */
     public static enum BankType {
         BANKERS(Npcs.class, "Bank", 44, 45, 56, 57, 494, 495, 498, 499, 909, 958, 1036, 2271, 2354, 2355, 3824, 5488, 5901, 4456, 4457, 4458, 4459, 5912, 5913, 6362, 6532, 6355, 6534, 6635, 7605, 8948, 9710, 14367),
         BANK_BOOTH(GameObjects.class, "Use-quickly", 782, 2213, 2995, 5276, 6084, 10517, 11402, 11758, 12759, 14367, 19230, 20325, 24914, 25808, 26972, 29085, 52589, 34752, 35647, 36786, 2012, 2015, 2019),

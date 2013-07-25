@@ -16,16 +16,29 @@ public final class Mouse {
     private Mouse() {
     }
 
+    /**
+     * Hops to specified location.
+     * @param x x
+     * @param y y
+     */
     public static void hop(int x, int y) {
         last.move(x, y);
         com.infibot.client.accessors.Mouse m = Game.getClient().getMouse();
         m.mouseMoved(new MouseEvent(Game.getCanvas(), MouseEvent.MOUSE_MOVED, System.currentTimeMillis(), 0, x, y, 0, false));
     }
 
+    /**
+     * Hops to specified point.
+     * @param p the point
+     */
     public static void hop(Point p) {
         hop(p.x, p.y);
     }
 
+    /**
+     * Left or right clicks with the mouse.
+     * @param left boolean indicating left-click or right-click
+     */
     public static void click(boolean left) {
         com.infibot.client.accessors.Mouse m = Game.getClient().getMouse();
         m.mousePressed(new MouseEvent(Game.getCanvas(), MouseEvent.MOUSE_PRESSED, System.currentTimeMillis(), 0, last.x, last.y, 1, false, left ? MouseEvent.BUTTON1 : MouseEvent.BUTTON3));
@@ -35,6 +48,11 @@ public final class Mouse {
         m.mouseClicked(new MouseEvent(Game.getCanvas(), MouseEvent.MOUSE_CLICKED, l, 0, last.x, last.y, 1, false));
     }
 
+    /**
+     * Moves the mouse to (x,y).
+     * @param x x
+     * @param y y
+     */
     public static void move(int x, int y) {
         while (distTo(x, y) > 2) {
             List<Point> list = genLine(last.x, last.y, x, y);
@@ -45,6 +63,10 @@ public final class Mouse {
         }
     }
 
+    /**
+     * Mouse position.
+     * @return last known location
+     */
     public static Point getPosition() {
         return last;
     }
@@ -72,6 +94,10 @@ public final class Mouse {
         return (int) distBetween(last.x, last.y, x, y);
     }
 
+    /**
+     * Sets mouse speed to specified speed.
+     * @param speed the specified speed
+     */
     public static void setSpeed(Speed speed) {
         if (speed != null) {
             Mouse.speed = speed;

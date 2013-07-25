@@ -48,31 +48,64 @@ public class GameObjects extends Locatables<GameObject> {
         }
         return null;
     }
-    
+
+    /**
+     *
+     * @param tile the location for the GameObject
+     * @return the GameObject at the tile specified
+     */
     public static GameObject getAt(Tile tile) {
         return instance.getInRegion(tile.getX() >> 7, tile.getY() >> 7);
     }
 
+    /**
+     *
+     * @return the closest GameObject instance available
+     */
     public static GameObject getNearest() {
         return instance.nearest(instance.ALL_FILTER);
     }
 
+    /**
+     * Returns nearest object that matches filter.
+     * @param filter the specified filter
+     * @return nearest object that matches filter
+     */
     public static GameObject getNearest(Filter<GameObject> filter) {
         return instance.nearest(filter);
     }
 
+    /**
+     * Returns nearest object that matches any of the IDs.
+     * @param ids the specified ids
+     * @return nearest object that mathces any of the ids
+     */
     public static GameObject getNearest(int... ids) {
         return instance.nearest(ids);
     }
 
+    /**
+     *
+     * @return a list of all loaded gameobjects in a 104x104 region
+     */
     public static List<GameObject> getLoaded() {
         return instance.loaded(instance.ALL_FILTER);
     }
 
+    /**
+     * Returns all GameObjects that match filter.
+     * @param filter specified filter
+     * @return a list of all loaded gameobjects in a 104x104 region and that match the filter
+     */
     public static List<GameObject> getLoaded(Filter<GameObject> filter) {
         return instance.loaded(filter);
     }
 
+    /**
+     * Returns all GameObjects that match any of the IDs.
+     * @param ids ids to look for
+     * @return a list of the found gameobjects matching ids
+     */
     public static List<GameObject> getLoaded(int... ids) {
         return instance.loaded(ids);
     }

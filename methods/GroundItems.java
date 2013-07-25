@@ -32,26 +32,53 @@ public class GroundItems extends Locatables<GroundItem> {
         return list;
     }
 
+    /**
+     *
+     * @return the closest GameObject instance available
+     */
     public static GroundItem getNearest() {
         return instance.nearest(instance.ALL_FILTER);
     }
 
+    /**
+     * Returns nearest grounditem that matches the filter
+     * @param groundItemFilter the filter specified
+     * @return nearest grounditem instance
+     */
     public static GroundItem getNearest(Filter<GroundItem> groundItemFilter) {
         return instance.nearest(groundItemFilter);
     }
 
+    /**
+     * Returns nearest grounditem that matches any of the IDs
+     * @param ids the ids specified
+     * @return nearest grounditem instance
+     */
     public static GroundItem getNearest(int... ids) {
         return instance.nearest(ids);
     }
 
+    /**
+     * @return all loaded grounditems
+     */
     public static List<GroundItem> getLoaded() {
         return instance.loaded(instance.ALL_FILTER);
     }
 
+    /**
+     * Returns loaded grounditems that matches the filter
+     * @param filter the filter specified
+     * @return loaded grounditems
+     */
     public static List<GroundItem> getLoaded(Filter<GroundItem> filter) {
         return instance.loaded(filter);
     }
 
+    /**
+     * Returns all loaded grounditem that matches any of the IDs
+     * @param ids the ids specified
+     * @return all loaded grounditem instance
+     */
     public static List<GroundItem> getLoaded(int... ids) {
         return instance.loaded(ids);
     }

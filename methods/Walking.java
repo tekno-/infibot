@@ -11,6 +11,11 @@ import com.infibot.client.api.wrappers.Tile;
 import java.awt.*;
 
 public class Walking {
+    /**
+     * Sets running to the specified boolean.
+     * @param running the state of running
+     * @return true if succeeded; otherwise false
+     */
     public static boolean setRun(boolean running) {
         if (isRunning() == running) {
             return true;
@@ -18,10 +23,19 @@ public class Walking {
         return Tab.SETTINGS.open() && Widgets.get(261, 0).click();
     }
 
+    /**
+     *
+     * @return true if running; otherwise false
+     */
     public static boolean isRunning() {
         return Settings.get(173) == 1;
     }
 
+    /**
+     * Clicks a Locatable on the minimap.
+     * @param locatable the locatable to click
+     * @return true if succeeded; otherwise false
+     */
     public static boolean clickOnMinimap(Locatable locatable) {
         Point point = Calculations.tileToMinimap(locatable);
         Mouse.move(point.x, point.y);
@@ -40,6 +54,10 @@ public class Walking {
         return false;
     }
 
+    /**
+     * Gets the current walking destination.
+     * @return the walking destination
+     */
     public static Tile getDestination() {
         Client client = Game.getClient();
         int x = client.getDestinationX(), y = client.getDestinationY();

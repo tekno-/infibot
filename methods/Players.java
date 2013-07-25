@@ -10,30 +10,44 @@ import java.util.List;
 public class Players extends Locatables<Player> {
     private static final Players instance = new Players();
 
+    /**
+     *
+     * @return nearest Npc instance available
+     */
     public static Player getNearest() {
         return instance.nearest(instance.ALL_FILTER);
     }
 
+    /**
+     *
+     * @param filter the specified filter
+     * @return nearest Npc instance that matches the filter
+     */
     public static Player getNearest(Filter<Player> filter) {
         return instance.nearest(filter);
     }
 
-    public static Player getNearest(int... ids) {
-        return instance.nearest(ids);
-    }
-
+    /**
+     *
+     * @return all loaded npcs
+     */
     public static List<Player> getLoaded() {
         return instance.loaded(instance.ALL_FILTER);
     }
 
+    /**
+     * Returns all loaded Npcs that match the filter.
+     * @param filter the filter
+     * @return the loaded npcs accepting the filter
+     */
     public static List<Player> getLoaded(Filter<Player> filter) {
         return instance.loaded(filter);
     }
 
-    public static List<Player> getLoaded(int... ids) {
-        return instance.loaded(ids);
-    }
-
+    /**
+     *
+     * @return the local player instance
+     */
     public static Player getLocal() {
         return new Player(Game.getClient().getLocalPlayer());
     }

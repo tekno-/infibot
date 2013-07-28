@@ -72,7 +72,7 @@ public class Equipment {
      */
     public static boolean equip(int... ids) {
         Item i = Inventory.getItem(ids);
-        return i != null && i.interact("Equip"); //Might be wrong action
+        return i != null && i.interact("Wield"); //Might be wrong action
     }
 
     /**

@@ -5,7 +5,7 @@ import com.infibot.client.api.methods.Mouse;
 import java.awt.*;
 
 public abstract class Interactable {
-    private static final Rectangle GAME_SCREEN = new Rectangle(0, 0, 763, 503);
+    private static final Rectangle GAME_SCREEN = new Rectangle(0, 0, 765, 503);
 
     public abstract Point getScreenPoint();
 

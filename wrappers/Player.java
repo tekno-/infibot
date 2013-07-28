@@ -48,10 +48,6 @@ public class Player extends Actor {
         return Players.getLoaded(validateFilter).size() > 0;
     }
 
-    public Model getModel() {
-        return accessor != null ? accessor.getModel() : null;
-    }
-
     @Override
     public boolean hover() {
         //TODO:Implement method to convert Model into a Polygon or make a wrapper and implement it there
